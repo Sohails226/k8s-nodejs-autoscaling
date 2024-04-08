@@ -1,0 +1,46 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: alertmanagers.monitoring.coreos.com
+spec:
+  group: monitoring.coreos.com
+  names:
+    kind: Alertmanager
+    listKind: AlertmanagerList
+    plural: alertmanagers
+    singular: alertmanager
+  scope: Namespaced
+  versions:
+    - name: v1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                baseImage: { type: string }
+                configMaps: { type: array, items: { type: string } }
+                configSecret: { type: string }
+                configVolume: { type: string }
+                externalUrl: { type: string }
+                image: { type: string }
+                listenLocal: { type: boolean }
+                logFormat: { type: string }
+                logLevel: { type: string }
+                nodeSelector: { type: object }
+                pause: { type: boolean }
+                priorityClassName: { type: string }
+                replicas: { type: integer }
+                resources: { type: object }
+                routePrefix: { type: string }
+                routeTimeout: { type: string }
+                securityContext: { type: object }
+                serviceAccountName: { type: string }
+                serviceMonitorSelector: { type: object }
+                sha: { type: string }
+                storage: { type: string }
+                tag: { type: string }
+                tolerations: { type: array, items: { type: object } }
